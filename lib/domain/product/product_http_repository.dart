@@ -1,5 +1,10 @@
 // spring의 api문서를 확인하고 제작할 것
 import 'package:data_app/domain/product/product.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+final productHttpRepository = Provider<ProductHttpRepository>((ref) {
+  return ProductHttpRepository();
+});
 
 class ProductHttpRepository {
   //테스트용
@@ -28,7 +33,7 @@ class ProductHttpRepository {
   // 외부통신때 사용함
   Product insert(Product product) {
     // http 통신 코드 (api문서 보고 작성하기)
-    product.id = list.length;
+    product.id = 4;
     list = [...list, product];
     return product;
   }
@@ -49,6 +54,11 @@ class ProductHttpRepository {
   int deleteById(int id) {
     // http 통신 코드 (api문서 보고 작성하기)
     list.where((product) => product.id != id).toList();
+    if (id == 4) {
+      return -1;
+    } else {
+      return 1;
+    }
     return 1;
   }
 }
