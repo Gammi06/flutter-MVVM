@@ -1,9 +1,24 @@
-// 스프링이 가진 엔티티를 똑같이 가져와야 함
-import 'package:flutter/widgets.dart';
-
 class Product {
+  Product({
+    required this.id,
+    required this.name,
+    required this.price,
+  });
+
   int id;
   String name;
   int price;
-  Product(this.id, this.name, this.price);
+
+  // 이름이 있는 생성자
+  factory Product.fromJson(Map<String, dynamic> json) => Product(
+        id: json["id"],
+        name: json["name"],
+        price: json["price"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+        "price": price,
+      };
 }
